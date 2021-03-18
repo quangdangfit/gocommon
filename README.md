@@ -13,6 +13,8 @@ Note that zap only supports the two most recent minor versions of Go.
 #### Logger:
 
 ```go
+package main
+
 import (
     "github.com/quangdangfit/gocommon/logger"
 )
@@ -26,6 +28,8 @@ func main() {
 #### Validation:
 
 ```go
+package main
+
 import (
     "github.com/quangdangfit/gocommon/validation"
 )
@@ -51,27 +55,30 @@ func main() {
 #### Redis:
 
 ```go
+package main
+
 import (
-    "github.com/quangdangfit/gocommon/redis"
+	"fmt"
+	"github.com/quangdangfit/gocommon/redis"
 )
 
 func main() {
 	var conf = redis.Config{
-        Address: "localhost:6379",
-        Password: "password",
-        Database: 1,
-    }
-    var r = redis.New()
-    
-    if err := r.Set("key", "value"); err != nil {
-        return err
-    }
-    
-    var value string
+		Address:  "localhost:6379",
+		Password: "password",
+		Database: 1,
+	}
+	var r = redis.New()
+
+	if err := r.Set("key", "value"); err != nil {
+		return err
+	}
+
+	var value string
 	if err := r.Get("key", &value); err != nil {
-        return err
-    }
-    fmt.Println("value: ", value)
+		return err
+	}
+	fmt.Println("value: ", value)
 }
 ```
 
