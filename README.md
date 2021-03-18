@@ -31,24 +31,26 @@ func main() {
 package main
 
 import (
-    "github.com/quangdangfit/gocommon/validation"
+	"fmt"
+
+	"github.com/quangdangfit/gocommon/validation"
 )
 
 type LoginBody struct {
-    Email    string `json:"email" validate:"required"`
-    Password string `json:"password" validate:"required"`
+	Email    string `json:"email" validate:"required"`
+	Password string `json:"password" validate:"required"`
 }
 
 func main() {
-    var validator = validation.New()
-    var body = LoginBody{
-        Email: "email",
-        Password: "password",
-    }
-    
-    if err := validator.ValidateStruct(body); err != nil {
-        return err
-    }
+	var validator = validation.New()
+	var body = LoginBody{
+		Email:    "email",
+		Password: "password",
+	}
+
+	if err := validator.ValidateStruct(body); err != nil {
+		fmt.Println(err)
+	}
 }
 ```
 
@@ -68,15 +70,15 @@ func main() {
 		Password: "password",
 		Database: 1,
 	}
-	var r = redis.New()
+	var r = redis.New(conf)
 
 	if err := r.Set("key", "value"); err != nil {
-		return err
+		fmt.Println(err)
 	}
 
 	var value string
 	if err := r.Get("key", &value); err != nil {
-		return err
+		fmt.Println(err)
 	}
 	fmt.Println("value: ", value)
 }
