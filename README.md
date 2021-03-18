@@ -48,6 +48,33 @@ func main() {
 }
 ```
 
+#### Redis:
+
+```go
+import (
+    "github.com/quangdangfit/gocommon/redis"
+)
+
+func main() {
+	var conf = redis.Config{
+        Address: "localhost:6379",
+        Password: "password",
+        Database: 1,
+    }
+    var r = redis.New()
+    
+    if err := r.Set("key", "value"); err != nil {
+        return err
+    }
+    
+    var value string
+	if err := r.Get("key", &value); err != nil {
+        return err
+    }
+    fmt.Println("value: ", value)
+}
+```
+
 ## Development Status: Stable
 
 All APIs are finalized, and no breaking changes will be made in the 1.x series
