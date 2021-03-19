@@ -58,3 +58,4 @@ fabric.properties
 config/.env.sh
 config/.env_test.sh
 vendor/
+.example/
