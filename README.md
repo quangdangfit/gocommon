@@ -84,12 +84,6 @@ func main() {
 }
 ```
 
-## Development Status: Stable
-
-All APIs are finalized, and no breaking changes will be made in the 1.x series
-of releases. Users of semver-aware dependency management systems should pin zap
-to `^1`.
-
 ## Contributing
 
 If you want to contribute to this boilerplate, clone the repository and just
