@@ -8,6 +8,7 @@ require (
 	github.com/go-playground/universal-translator v0.17.0
 	github.com/go-playground/validator/v10 v10.4.1
 	github.com/go-redis/redis/v8 v8.7.1
+	github.com/streadway/amqp v1.0.0
 	github.com/vanng822/go-solr v0.10.0
 	go.uber.org/zap v1.16.0
 )
