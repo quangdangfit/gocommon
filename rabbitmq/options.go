@@ -8,55 +8,55 @@ const (
 	ConsumerThreads = 10
 )
 
-// Option rabbitmq consumerOption
+// Option rabbitmq option
 type Option interface {
-	apply(*consumerOption)
+	apply(*option)
 }
 
-// consumerOption implement
-type consumerOption struct {
+// option implement
+type option struct {
 	handleFn    func(msg amqp.Delivery) error
 	errHandleFn func(err error)
 	threads     int
 	config      *Config
 }
 
-type optionFn func(*consumerOption)
+type optionFn func(*option)
 
-func (optFn optionFn) apply(opt *consumerOption) {
+func (optFn optionFn) apply(opt *option) {
 	optFn(opt)
 }
 
 // WithHandleFn set handleFn
 func WithHandleFn(handleFn func(msg amqp.Delivery) error) Option {
-	return optionFn(func(opt *consumerOption) {
+	return optionFn(func(opt *option) {
 		opt.handleFn = handleFn
 	})
 }
 
 // WithErrorHandleFn set errHandleFn
 func WithErrorHandleFn(errHandleFn func(err error)) Option {
-	return optionFn(func(opt *consumerOption) {
+	return optionFn(func(opt *option) {
 		opt.errHandleFn = errHandleFn
 	})
 }
 
 // WithThreads set threads
 func WithThreads(threads int) Option {
-	return optionFn(func(opt *consumerOption) {
+	return optionFn(func(opt *option) {
 		opt.threads = threads
 	})
 }
 
 // WithConfig set config
 func WithConfig(config *Config) Option {
-	return optionFn(func(opt *consumerOption) {
+	return optionFn(func(opt *option) {
 		opt.config = config
 	})
 }
 
-func getDefaultOption() *consumerOption {
-	return &consumerOption{
+func getDefaultOption() *option {
+	return &option{
 		handleFn:    nil,
 		errHandleFn: nil,
 		threads:     ConsumerThreads,
@@ -64,7 +64,7 @@ func getDefaultOption() *consumerOption {
 	}
 }
 
-func getOption(opts ...Option) *consumerOption {
+func getOption(opts ...Option) *option {
 	opt := getDefaultOption()
 	for _, o := range opts {
 		o.apply(opt)

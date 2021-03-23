@@ -20,3 +20,7 @@ type IRabbitMQ interface {
 type IConsumer interface {
 	Consume()
 }
+
+type IPublisher interface {
+	Publish(payload []byte, routingKey string, reliable bool) (err error)
+}
