@@ -1,20 +1,26 @@
+name: master
+
 on:
   push:
-    branches: [master]
+    branches: [ master ]
   pull_request:
-    branches: [master]
+    branches: [ master ]
+
 jobs:
-  goreadme:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v2
-      - name: Update readme according to Go doc
-        uses: posener/goreadme@v1
+      - uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
         with:
-          badge-travisci: 'true'
-          badge-codecov: 'true'
-          badge-godoc: 'true'
-          badge-goreadme: 'true'
-          # Optional: Token allows goreadme to comment the PR with diff preview.
-          github-token: '${{ secrets.GITHUB_TOKEN }}'
+          go-version: 1.15
+
+      - name: Setup SSH Keys and known_hosts
+        uses: webfactory/ssh-agent@v0.4.1
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Go Test
+        run: go test -timeout 9000s -cover -a -v ./test
