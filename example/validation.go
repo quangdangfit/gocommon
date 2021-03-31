@@ -1,4 +1,4 @@
-package main
+package example
 
 import (
 	"fmt"
@@ -11,7 +11,7 @@ type LoginBody struct {
 	Password string `json:"password" validate:"required"`
 }
 
-func main() {
+func Validation() {
 	var validator = validation.New()
 	var body = LoginBody{
 		Email:    "email",

@@ -1,4 +1,4 @@
-package main
+package example
 
 import (
 	"fmt"
@@ -13,7 +13,7 @@ type User struct {
 	Password string `json:"password"`
 }
 
-func main() {
+func JWT() {
 	jAuth := jwt.New(jwt.WithTokenSecretKey("my-secret-key"), jwt.WithExpiredTime(1*time.Minute))
 
 	user := User{

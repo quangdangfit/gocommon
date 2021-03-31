@@ -1,4 +1,4 @@
-package main
+package example
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"github.com/quangdangfit/gocommon/redis"
 )
 
-func main() {
+func Redis() {
 	var conf = redis.Config{
 		Address:  "localhost:6379",
 		Password: "password",

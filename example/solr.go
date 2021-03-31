@@ -1,4 +1,4 @@
-package main
+package example
 
 import (
 	"encoding/json"
@@ -7,7 +7,7 @@ import (
 	"github.com/quangdangfit/gocommon/solr"
 )
 
-func main() {
+func Solr() {
 	var conf = solr.Config{
 		URL:      "http://localhost:8983/",
 		Core:     "core",
