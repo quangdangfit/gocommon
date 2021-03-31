@@ -23,4 +23,4 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Go Test
-        run: go test -timeout 9000s -cover -a -v ./test
+        run: go test -timeout 9000s -cover -a -v ./...
