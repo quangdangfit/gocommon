@@ -31,7 +31,7 @@ func New(opts ...Option) IJWTAuth {
 
 // GenerateToken generate jwt token
 func (a *Auth) GenerateToken(data interface{}) (string, *time.Time) {
-	exp := time.Now().Add(time.Hour * a.TokenExpiredTime)
+	exp := time.Now().Add(a.TokenExpiredTime)
 	tokenContent := jwt.MapClaims{
 		"payload": map[string]interface{}{
 			UserDataKey: data,
