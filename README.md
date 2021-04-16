@@ -1,9 +1,13 @@
 # Go Common Libraries
 
 [![Master](https://github.com/quangdangfit/gocommon/workflows/master/badge.svg)](https://github.com/quangdangfit/gocommon/actions)
-[![Build Status](https://travis-ci.org/quangdangfit/gocommon.svg?branch=master)](https://travis-ci.org/quangdangfit/gocommon)
 [![codecov](https://codecov.io/gh/quangdangfit/gocommon/branch/master/graph/badge.svg)](https://codecov.io/gh/quangdangfit/gocommon)
 [![GoDoc](https://img.shields.io/badge/pkg.go.dev-doc-blue)](http://pkg.go.dev/github.com/quangdangfit/gocommon)
+
+## Documentation
+
+Use [Godoc documentation](https://pkg.go.dev/github.com/quangdangfit/gocommon) for
+reference and usage.
 
 ## Quick Start
 #### Logger:
