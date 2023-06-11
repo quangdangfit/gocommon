@@ -65,12 +65,7 @@ func (r *redis) Get(key string, value interface{}) error {
 		return err
 	}
 
-	b, err := json.Marshal(&strValue)
-	if err != nil {
-		return err
-	}
-
-	err = json.Unmarshal(b, &value)
+	err = json.Unmarshal([]byte(strValue), value)
 	if err != nil {
 		return err
 	}
