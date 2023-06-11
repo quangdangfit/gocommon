@@ -82,7 +82,8 @@ func (r *redis) SetWithExpiration(key string, value interface{}, expiration time
 	ctx, cancel := context.WithTimeout(context.Background(), Timeout*time.Second)
 	defer cancel()
 
-	err := r.cmd.Set(ctx, key, value, expiration).Err()
+	bData, _ := json.Marshal(value)
+	err := r.cmd.Set(ctx, key, bData, expiration).Err()
 	if err != nil {
 		return err
 	}
@@ -94,7 +95,8 @@ func (r *redis) Set(key string, value interface{}) error {
 	ctx, cancel := context.WithTimeout(context.Background(), Timeout*time.Second)
 	defer cancel()
 
-	err := r.cmd.Set(ctx, key, value, 0).Err()
+	bData, _ := json.Marshal(value)
+	err := r.cmd.Set(ctx, key, bData, 0).Err()
 	if err != nil {
 		return err
 	}
