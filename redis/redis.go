@@ -61,11 +61,7 @@ func (r *redis) Get(key string, value interface{}) error {
 	defer cancel()
 
 	strValue, err := r.cmd.Get(ctx, key).Result()
-
 	if err != nil {
-		if err == goredis.Nil {
-			return nil
-		}
 		return err
 	}
 
