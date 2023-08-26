@@ -61,20 +61,11 @@ func (r *redis) Get(key string, value interface{}) error {
 	defer cancel()
 
 	strValue, err := r.cmd.Get(ctx, key).Result()
-
-	if err != nil {
-		if err == goredis.Nil {
-			return nil
-		}
-		return err
-	}
-
-	b, err := json.Marshal(&strValue)
 	if err != nil {
 		return err
 	}
 
-	err = json.Unmarshal(b, &value)
+	err = json.Unmarshal([]byte(strValue), value)
 	if err != nil {
 		return err
 	}
@@ -86,7 +77,8 @@ func (r *redis) SetWithExpiration(key string, value interface{}, expiration time
 	ctx, cancel := context.WithTimeout(context.Background(), Timeout*time.Second)
 	defer cancel()
 
-	err := r.cmd.Set(ctx, key, value, expiration).Err()
+	bData, _ := json.Marshal(value)
+	err := r.cmd.Set(ctx, key, bData, expiration).Err()
 	if err != nil {
 		return err
 	}
@@ -98,7 +90,8 @@ func (r *redis) Set(key string, value interface{}) error {
 	ctx, cancel := context.WithTimeout(context.Background(), Timeout*time.Second)
 	defer cancel()
 
-	err := r.cmd.Set(ctx, key, value, 0).Err()
+	bData, _ := json.Marshal(value)
+	err := r.cmd.Set(ctx, key, bData, 0).Err()
 	if err != nil {
 		return err
 	}
